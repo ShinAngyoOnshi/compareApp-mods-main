@@ -13,11 +13,15 @@ import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+// import { CircularProgress } from '@mui/material';
+import ControlledButton from './ControlledButton';
 
-const DemoPaper = styled(Paper)(({ theme }) => ({
-  width: 180,
-  height: 180,
-  padding: theme.spacing(2),
+
+  
+  const DemoPaper = styled(Paper)(({ theme }) => ({
+    width: 180,
+    height: 180,
+    padding: theme.spacing(2),
   ...theme.typography.body2,
   textAlign: 'center',
 }));
@@ -43,6 +47,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
+
 export default function Home() {
   const [tableDataOld, setTableDataOld] = useState([]);
   const [tableDataNew, setTableDataNew] = useState([]);
@@ -52,6 +57,8 @@ export default function Home() {
   const [xlsxCheck, setXlsxCheck] = useState(false);
   const [addedRowCheck, setAddedRowCheck] = useState(true);
   const [removedRowCheck, setRemovedRowCheck] = useState(true);
+  
+  
 
   const convertToJson = async (headers, data) => {
     const rows = [];
@@ -103,6 +110,7 @@ export default function Home() {
 
   const runProcess = () => {
     console.log('In processing');
+    // setIsLoading(true);
     const removedRows = findRemovedRows(tableDataOld, tableDataNew);
     const addedRows = findAddedRows(tableDataOld, tableDataNew);
 
@@ -146,6 +154,7 @@ export default function Home() {
         window.URL.revokeObjectURL(urlAdded);
       }
     }
+    // setIsLoading(false);
   };
 
   function extractData(file, inputId) {
@@ -243,7 +252,7 @@ export default function Home() {
                     }}
                     style={{ marginRight: 20 }}
                   />
-                  <label htmlFor="removed">Removed Rows</label>
+                  <label htmlFor="removed" style={{color:'black'}}>Removed Rows</label>
             </Item>
           </Grid>
         </Grid>
@@ -262,7 +271,7 @@ export default function Home() {
               }}
               style={{ marginRight: 20 }}
             />
-              <label htmlFor="xlsx">XLSX</label>
+              <label htmlFor="xlsx" style={{color:'black'}}>XLSX</label>
             </Item>
           </Grid>
           <Grid xs={6}>  
@@ -277,15 +286,22 @@ export default function Home() {
                 }}
                 style={{ marginRight: 20 }}
               />
-              <label htmlFor="csv">CSV</label>
+              <label htmlFor="csv" style={{color:'black'}}>CSV</label>
             </Item>
           </Grid>
         </Grid>
         </Box>
         <Stack mt={2} direction="row" spacing={2}>
-          <Button onClick={runProcess} variant="contained" endIcon={<SendIcon />}>
+          <Button onClick={runProcess}
+          
+          variant="contained" 
+          endIcon={<SendIcon />}>
             Run Process
           </Button>
+              <ControlledButton>
+
+              </ControlledButton>
+
         </Stack>
       </Box>
     </>
