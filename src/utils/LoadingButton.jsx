@@ -1,35 +1,36 @@
+'use client'
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import { CircularProgress } from 'material-ui/Progress';
-import Check from 'material-ui-icons/Check';
+// import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import { CircularProgress } from '@mui/material/CircularProgress';
+import Check from '@mui/icons-material/Check';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-});
+// const styles = (theme) => ({
+//   button: {
+//     margin: theme.spacing(1),
+//   },
+// });
 
 const LoadingButton = (props) => {
   const { classes, loading, done, ...other } = props;
 
   if (done) {
     return (
-      <Button className={classes.button} {...other} disabled>
+      <Button {...other} disabled>
         <Check />
       </Button>
     );
   }
   else if (loading) {
     return (
-      <Button className={classes.button} {...other}>
+      <Button {...other}>
         <CircularProgress />
       </Button>
     );
   } else {
     return (
-      <Button className={classes.button} {...other} />
+      <Button {...other} />
     );
   }
 }
@@ -45,4 +46,4 @@ LoadingButton.propTypes = {
   done: PropTypes.bool,
 };
 
-export default withStyles(styles)(LoadingButton);
+export default LoadingButton;
