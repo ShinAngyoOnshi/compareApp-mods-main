@@ -68,8 +68,10 @@ export default function Home() {
 
     if (!allowedExtensions.includes(fileExtension)) {
       console.log('Invalid file type');
-      return;
+      return setIsLoading(false);
     }
+
+    //insert control extension file
 
     if (inputId === 'old-uploader') {
       setOldFileName(fileName);
