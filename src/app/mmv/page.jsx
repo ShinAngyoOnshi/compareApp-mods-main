@@ -63,6 +63,14 @@ export default function Home() {
     const inputId = e.target.id;
     const file = e.target.files[0];
     const fileName = e.target.files[0].name;
+    const fileExtension = fileName.split('.').pop().toLowerCase();
+    const allowedExtensions = ['xlsx', 'xls', 'csv'];
+
+    if (!allowedExtensions.includes(fileExtension)) {
+      console.log('Invalid file type');
+      return;
+    }
+
     if (inputId === 'old-uploader') {
       setOldFileName(fileName);
     } else {
@@ -165,7 +173,7 @@ export default function Home() {
       } finally {
         setIsLoading(false);
       }
-    }, 100);
+    }, 2000);
   };
 
   function extractData(rows, inputId) {
