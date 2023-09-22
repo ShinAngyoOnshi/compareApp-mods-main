@@ -64,7 +64,7 @@ export default function Home() {
     const file = e.target.files[0];
     const fileName = e.target.files[0].name;
     const fileExtension = fileName.split('.').pop().toLowerCase();
-    const allowedExtensions = ['xlsx', 'xls', 'csv'];
+    const allowedExtensions = ['xlsx'];
 
     if (!allowedExtensions.includes(fileExtension)) {
       console.log('Invalid file type');
